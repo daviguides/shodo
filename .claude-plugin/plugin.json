@@ -1,0 +1,11 @@
+{
+    "name": "shodo",
+    "version": "1.0.0",
+    "description": "Shodō (書道) - The Way of Python Calligraphy",
+    "author": {
+        "name": "Davi Guides",
+        "url": "https://github.com/daviguides"
+    },
+    "repository": "https://github.com/daviguides/shodo",
+    "license": "MIT"
+}

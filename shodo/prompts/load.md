@@ -51,15 +51,28 @@ When Shodō Python standards are loaded:
 
 ## Confirmation
 
-After reading all files, respond with:
+After reading all files, respond with EXACTLY this card:
 
 ```
-       ●
+╭─────────────────────────────────────────────────────╮
+│                                                     │
+│       ●                                             │
+│                 │  The Way of Python Calligraphy    │
+│  S  H  O  D  Ō  │  書道 - Elegant Python Standards  │
+│                 │  (v1.0.0)                         │
+│       │                                             │
+│                                                     │
+╰─────────────────────────────────────────────────────╯
 
- S  H  O  D  Ō
+┌─ Standards Loaded ──────────────────────────────────┐
+│ • Type hints (all functions annotated)              │
+│ • Google-style docstrings                           │
+│ • Ruff formatting (80 char lines)                   │
+│ • Python 3.13+ patterns                             │
+│ • pytest + hypothesis testing                       │
+└─────────────────────────────────────────────────────┘
 
-       │
-
-Python standards loaded (7 files).
-Ready for elegant Python code.
+┌─ Files ─────────────────────────────────────────────┐
+│ 4 specs + 3 examples = 7 files loaded               │
+└─────────────────────────────────────────────────────┘
 ```
