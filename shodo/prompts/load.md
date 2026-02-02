@@ -56,11 +56,11 @@ After reading all files, respond with EXACTLY this card:
 ```
 ╭─────────────────────────────────────────────────────╮
 │                                                     │
-│       ●                                             │
+│        ●                                            │
 │                 │  The Way of Python Calligraphy    │
 │  S  H  O  D  Ō  │  書道 - Elegant Python Standards  │
 │                 │  (v1.0.0)                         │
-│       │                                             │
+│        │                                            │
 │                                                     │
 ╰─────────────────────────────────────────────────────╯
 
