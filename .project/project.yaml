@@ -1,0 +1,5 @@
+project:
+  name: shodo
+  type: standalone
+  docs_root: ./docs
+  owner: daviguides
