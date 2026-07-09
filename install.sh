@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ============================================================================
 # Shodō Installer
-# Installs Shodō Python standards to ~/.claude/shodo
+# Installs Shodō code standards (Python & Rust) to ~/.claude/shodo
 # ============================================================================
 
 # --- Colors (Rich-inspired palette) ---
@@ -107,9 +107,9 @@ print_header() {
   box_top
   box_empty
   printf "${CYAN}│${NC}        ${BOLD}●${NC}                                            ${CYAN}│${NC}\n"
-  printf "${CYAN}│${NC}                 │  The Way of Python Calligraphy    ${CYAN}│${NC}\n"
-  printf "${CYAN}│${NC}  ${BOLD}S  H  O  D  Ō${NC}  │  書道 - Elegant Python Standards  ${CYAN}│${NC}\n"
-  printf "${CYAN}│${NC}                 │  (v1.0.0)                         ${CYAN}│${NC}\n"
+  printf "${CYAN}│${NC}                 │  The Way of Code Calligraphy      ${CYAN}│${NC}\n"
+  printf "${CYAN}│${NC}  ${BOLD}S  H  O  D  Ō${NC}  │  書道 - Elegant Code Standards    ${CYAN}│${NC}\n"
+  printf "${CYAN}│${NC}                 │  (v1.1.0)                         ${CYAN}│${NC}\n"
   printf "${CYAN}│${NC}        ${BOLD}│${NC}                                            ${CYAN}│${NC}\n"
   box_empty
   box_separator
@@ -203,7 +203,8 @@ print_next_steps() {
   box_separator
   box_empty
   box_heading
-  box_text "/shodo:load           → Python standards"
+  box_text "/shodo:load [lang]     → Language standards"
+  box_text "/shodo:load-cli [lang] → CLI architecture"
   box_empty
   box_text "Docs: https://github.com/daviguides/shodo"
   box_empty
