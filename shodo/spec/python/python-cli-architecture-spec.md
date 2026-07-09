@@ -1,4 +1,4 @@
-# Python CLI Architecture Principles
+# Python CLI Architecture Specification
 
 ## Package Structure
 
@@ -68,6 +68,64 @@ A feature that loads config from YAML and validates it:
 | Where config lives, how to resolve and validate | `services/` | Domain rules, file locations |
 | Data structure definition | `schemas/` | Field names, types, constraints |
 | User-facing args and output | `commands/` | CLI flags, rich formatting |
+
+## Sub-App Architecture (Context Separation)
+
+The flat layout above is the starting point. When command groups
+develop distinct domains — services clustering by theme, schemas used
+by only one group — graduate to **sub-apps**: vertical slices that
+replicate the layers internally.
+
+```
+project_name/
+├── main.py              # Aggregator — registers core + sub-apps
+├── display.py           # Shared across all sub-apps
+├── exceptions.py        # Shared error hierarchy
+├── data/                # Bundled config
+│
+├── core/                # Sub-app for SHARED domain
+│   ├── schemas/
+│   ├── integrations/
+│   ├── services/
+│   └── commands/
+│
+├── commit/              # Sub-app = vertical slice
+│   ├── schemas/
+│   ├── integrations/
+│   ├── services/
+│   └── commands/
+├── pull/                # Smaller slice — only the layers it needs
+│   ├── services/
+│   └── commands/
+└── sync/
+    ├── services/
+    └── commands/
+```
+
+### Sub-App Rules
+
+1. **Each sub-app replicates only the layers it needs** — a slice
+   with two layers is correct, not incomplete. Dependency rules apply
+   WITHIN the slice.
+2. **`core/` owns the shared domain** — sub-apps import from `core/`,
+   **never from each other**. Logic needed by two slices moves to core.
+3. **Top-level shared**: `main.py`, `display.py`, `exceptions.py`,
+   `data/` — transversal to all slices.
+4. **`main.py` stays a pure aggregator** — each sub-app exposes its
+   own `typer.Typer()` from `<subapp>/commands/`, registered via
+   `app.add_typer(commit_app, name="commit")`.
+
+### When to Graduate
+
+| Signal | Action |
+|--------|--------|
+| Command groups share no services | Split into sub-apps |
+| `services/` clusters by theme | Each cluster becomes a slice |
+| A schema is used by one group only | It belongs inside that slice |
+| Two slices need the same service | Move it to `core/` |
+
+The directory listing should scream what the tool DOES (commit, pull,
+sync), not how it is built (commands, services).
 
 ## API Analogy
 
