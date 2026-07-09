@@ -1,6 +1,6 @@
 ---
-description: Load language standards for elegant code (python|rust|all; detects project languages if omitted)
-user-invocable: true
+description: Load CLI architecture standards (python|rust|all; detects project languages if omitted)
+argument-hint: "[python|rust|all]"
 ---
 
 # MANDATORY ACTION
@@ -10,7 +10,7 @@ Language argument (may be empty): $ARGUMENTS
 Use the Read tool on the file below. DO NOT summarize or acknowledge - READ IT:
 
 ```
-Read: ~/.claude/shodo/prompts/load.md
+Read: ~/.claude/shodo/prompts/load-cli.md
 ```
 
 Then follow the instructions inside that file, resolving languages
