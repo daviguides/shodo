@@ -13,6 +13,7 @@ An argument may have been passed (e.g. `/shodo:load rust`):
 |----------|-----------|
 | `python` | Python only |
 | `rust` | Rust only |
+| `java` | Java only |
 | `all` | All supported languages |
 | (none) | DETECT — procedure below |
 
@@ -21,7 +22,9 @@ An argument may have been passed (e.g. `/shodo:load rust`):
 1. Search for markers in the current directory, its ancestors, AND
    shallow subdirectories (max depth 3). Use Glob or:
    ```bash
-   find . -maxdepth 3 \( -name pyproject.toml -o -name Cargo.toml -o -name tsconfig.json \) \
+   find . -maxdepth 3 \( -name pyproject.toml -o -name Cargo.toml \
+     -o -name pom.xml -o -name build.gradle -o -name build.gradle.kts \
+     -o -name tsconfig.json \) \
      -not -path "*/node_modules/*" -not -path "*/.venv/*" \
      -not -path "*/target/*" -not -path "*/.git/*" 2>/dev/null
    ```
@@ -31,6 +34,7 @@ An argument may have been passed (e.g. `/shodo:load rust`):
    |--------|----------|
    | `pyproject.toml` | python |
    | `Cargo.toml` | rust |
+   | `pom.xml` / `build.gradle` / `build.gradle.kts` | java |
    | `tsconfig.json` | typescript (no specs yet — mention and skip) |
 
 3. Load the **UNION** of all detected languages (monorepos load
@@ -71,6 +75,23 @@ Read: ~/.claude/shodo/context/examples/rust-templates.md
 Read: ~/.claude/shodo/context/examples/rust-anti-patterns.md
 ```
 
+## Java Files (7)
+
+### Step 1: Read Java Specs
+```
+Read: ~/.claude/shodo/spec/java/java-language-spec.md
+Read: ~/.claude/shodo/spec/java/java-style-spec.md
+Read: ~/.claude/shodo/spec/java/java-libraries-spec.md
+Read: ~/.claude/shodo/spec/java/java-testing-tools-spec.md
+```
+
+### Step 2: Read Java Examples
+```
+Read: ~/.claude/shodo/context/examples/java-patterns.md
+Read: ~/.claude/shodo/context/examples/java-templates.md
+Read: ~/.claude/shodo/context/examples/java-anti-patterns.md
+```
+
 ---
 
 ## HALT CONDITIONS
@@ -95,6 +116,13 @@ language: YOU VIOLATED THIS PRINCIPLE.**
 3. **Style** - rustfmt + clippy -D warnings
 4. **Language** - Edition 2024, stable toolchain, newtypes
 5. **Testing** - cargo-nextest + rstest + proptest
+
+**Java** standards active:
+1. **Data** - records + sealed interfaces + pattern matching, no Lombok
+2. **Nullness** - JSpecify @NullMarked + NullAway, Optional at returns
+3. **Style** - Spotless (palantir-java-format) + Error Prone
+4. **Language** - Java 25 LTS, virtual threads for I/O
+5. **Testing** - JUnit 6 + AssertJ + Testcontainers + ArchUnit
 
 ## Confirmation
 
@@ -127,6 +155,14 @@ actual languages and counts (e.g. `python (7) + rust (7) = 14 files`):
 │ • rustfmt + clippy -D warnings                      │
 │ • Edition 2024, stable toolchain, newtypes          │
 │ • cargo-nextest + rstest + proptest                 │
+└─────────────────────────────────────────────────────┘
+
+┌─ Java Standards ────────────────────────────────────┐
+│ • records + sealed types + pattern matching         │
+│ • JSpecify @NullMarked + NullAway, no Lombok        │
+│ • Spotless (palantir) + Error Prone                 │
+│ • Java 25 LTS, virtual threads for I/O              │
+│ • JUnit 6 + AssertJ + Testcontainers + ArchUnit     │
 └─────────────────────────────────────────────────────┘
 
 ┌─ Files ─────────────────────────────────────────────┐

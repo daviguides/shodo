@@ -16,7 +16,7 @@
        │
 ```
 
-Shodō provides **language-specific standards** for **Python and Rust** - style, types, error handling, library preferences, and CLI architecture.
+Shodō provides **language-specific standards** for **Python, Rust, and Java** - style, types, error handling, library preferences, and CLI architecture.
 
 ## Installation
 
@@ -35,13 +35,13 @@ Just as calligraphy masters spend years perfecting each stroke, Shodō teaches t
 
 ### Core Standards
 
-| Standard | Calligraphy Virtue | Python | Rust |
-|----------|-------------------|--------|------|
-| **Style** | Form (形) | PEP 8 + Ruff | rustfmt + clippy |
-| **Types** | Clarity (明) | Type hints | Newtypes, exhaustive match |
-| **Errors** | Honesty (誠) | Explicit exceptions | Result + thiserror/anyhow |
-| **Docs** | Communication (伝) | Docstrings | Doc comments |
-| **Libraries** | Tools (具) | typer, rich, pydantic | clap, serde, tokio |
+| Standard | Calligraphy Virtue | Python | Rust | Java |
+|----------|-------------------|--------|------|------|
+| **Style** | Form (形) | PEP 8 + Ruff | rustfmt + clippy | Spotless + Error Prone |
+| **Types** | Clarity (明) | Type hints | Newtypes, exhaustive match | records, sealed types |
+| **Errors** | Honesty (誠) | Explicit exceptions | Result + thiserror/anyhow | Typed exceptions, chained |
+| **Docs** | Communication (伝) | Docstrings | Doc comments | Javadoc |
+| **Libraries** | Tools (具) | typer, rich, pydantic | clap, serde, tokio | picocli, Jackson, JUnit |
 
 ## Relationship with Other Plugins
 
@@ -50,7 +50,7 @@ Shodō is the calligraphy that gives form to code:
 | Plugin | Philosophy | Focus |
 |--------|------------|-------|
 | **zazen** | Zen (座禅) | Universal principles (any language) |
-| **shodo** | Calligraphy (書道) | Language standards (Python & Rust) |
+| **shodo** | Calligraphy (書道) | Language standards (Python, Rust & Java) |
 | **kinhin** | Walking meditation (経行) | TDD practices |
 | **arche** | Greek (ἀρχή) | LLM behavioral principles |
 
@@ -64,8 +64,8 @@ Shodō is the calligraphy that gives form to code:
 ┌───────┐ ┌───────┐ ┌────────┐
 │ shodo │ │kinhin │ │ kyudo  │
 └───────┘ └───────┘ └────────┘
- Python     TDD      Actions
- & Rust
+ Python,    TDD      Actions
+Rust, Java
    ▲
    │
   YOU ARE HERE
@@ -82,16 +82,23 @@ shodo/
 │   │   ├── python-libraries-spec.md
 │   │   ├── python-testing-tools-spec.md
 │   │   └── python-cli-architecture-spec.md
-│   └── rust/                # Rust standards
-│       ├── rust-language-spec.md
-│       ├── rust-style-spec.md
-│       ├── rust-libraries-spec.md
-│       ├── rust-testing-tools-spec.md
-│       └── rust-cli-architecture-spec.md
+│   ├── rust/                # Rust standards
+│   │   ├── rust-language-spec.md
+│   │   ├── rust-style-spec.md
+│   │   ├── rust-libraries-spec.md
+│   │   ├── rust-testing-tools-spec.md
+│   │   └── rust-cli-architecture-spec.md
+│   └── java/                # Java standards
+│       ├── java-language-spec.md
+│       ├── java-style-spec.md
+│       ├── java-libraries-spec.md
+│       ├── java-testing-tools-spec.md
+│       └── java-cli-architecture-spec.md
 ├── context/                 # Applied examples
 │   └── examples/
 │       ├── python-patterns.md / templates / anti-patterns
-│       └── rust-patterns.md / templates / anti-patterns
+│       ├── rust-patterns.md / templates / anti-patterns
+│       └── java-patterns.md / templates / anti-patterns
 ├── prompts/                 # Workflow orchestrators
 ├── commands/                # User-facing commands
 └── skills/                  # Skill definitions
@@ -103,13 +110,15 @@ shodo/
 /shodo:load                  # Detect project languages and load standards
 /shodo:load rust             # Load Rust standards only
 /shodo:load python           # Load Python standards only
+/shodo:load java             # Load Java standards only
 /shodo:load all              # Load every supported language
 
 /shodo:load-cli              # Load CLI architecture (same resolution)
 ```
 
 Without an argument, Shodō detects languages by project markers
-(`pyproject.toml` → Python, `Cargo.toml` → Rust) — in the current
+(`pyproject.toml` → Python, `Cargo.toml` → Rust, `pom.xml` /
+`build.gradle` / `build.gradle.kts` → Java) — in the current
 directory, ancestors, and shallow subdirectories — and loads the
 union (monorepos load multiple languages).
 

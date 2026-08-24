@@ -1,6 +1,6 @@
 ---
-description: Load CLI architecture standards (python|rust|all; detects project languages if omitted)
-argument-hint: "[python|rust|all]"
+description: Load CLI architecture standards (python|rust|java|all; detects project languages if omitted)
+argument-hint: "[python|rust|java|all]"
 ---
 
 # MANDATORY ACTION

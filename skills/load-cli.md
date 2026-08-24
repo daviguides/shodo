@@ -1,5 +1,5 @@
 ---
-description: Load CLI architecture standards (python|rust|all; detects project languages if omitted)
+description: Load CLI architecture standards (python|rust|java|all; detects project languages if omitted)
 user-invocable: true
 ---
 
