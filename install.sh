@@ -109,7 +109,7 @@ print_header() {
   printf "${CYAN}│${NC}        ${BOLD}●${NC}                                            ${CYAN}│${NC}\n"
   printf "${CYAN}│${NC}                 │  The Way of Code Calligraphy      ${CYAN}│${NC}\n"
   printf "${CYAN}│${NC}  ${BOLD}S  H  O  D  Ō${NC}  │  書道 - Elegant Code Standards    ${CYAN}│${NC}\n"
-  printf "${CYAN}│${NC}                 │  (v1.1.0)                         ${CYAN}│${NC}\n"
+  printf "${CYAN}│${NC}                 │  (v1.2.0)                         ${CYAN}│${NC}\n"
   printf "${CYAN}│${NC}        ${BOLD}│${NC}                                            ${CYAN}│${NC}\n"
   box_empty
   box_separator
