@@ -88,3 +88,61 @@ Extracted from Zazen to separate concerns:
 - **Zazen**: Zen principles + naming + structure
 - **Shodō**: Language standards (style, types, errors, libraries) — Python, Rust & Java
 - **Kinhin**: TDD practices
+
+---
+
+## Releasing — mandatory workflow
+
+Every plugin modification MUST follow this sequence. No exceptions.
+
+### 1. Bump version
+
+Patch for fixes/tweaks, minor for new skills or behavioral changes:
+
+```bash
+# From gradients/shodo/
+# Edit .claude-plugin/plugin.json version field
+# Also update install.sh header if it shows a version
+```
+
+### 2. Commit and push
+
+```bash
+git add -A && git commit -m "bump: vX.Y.Z — <what changed>"
+git tag -a vX.Y.Z -m "<what changed>"
+git push && git push origin vX.Y.Z
+```
+
+### 3. Run install.sh
+
+```bash
+~/work/sources/continuum/gradients/shodo/install.sh
+```
+
+Note: install.sh clones from the GitHub remote (not local source), so
+the push in step 2 must land before running it.
+
+### 4. Verify cache is not stale
+
+The plugin cache (`~/.claude/plugins/cache/daviguides/shodo/`) is
+unstable — even after a successful install, it can preserve stale
+state from previous versions. This is a known unresolved bug in the
+Claude Code plugin system.
+
+After install, always verify:
+
+```bash
+# Compare installed vs source timestamps
+diff <(ls -lR ~/.claude/shodo/skills/) <(ls -lR skills/)
+
+# Check cache version matches
+ls ~/.claude/plugins/cache/daviguides/shodo/
+
+# If stale, nuke cache and reinstall
+rm -rf ~/.claude/plugins/cache/daviguides/shodo/
+rm -rf ~/.claude/shodo/
+./install.sh
+```
+
+Do NOT move to the next task with a stale cache — the session will
+load outdated skills silently.
