@@ -161,7 +161,7 @@ actual languages and counts (e.g. `python (7) + rust (7) = 14 files`):
 │        ●                                            │
 │                 │  The Way of Code Calligraphy      │
 │  S  H  O  D  Ō  │  書道 - Elegant Code Standards    │
-│                 │  (v1.2.0)                         │
+│                 │  (v1.3.0)                         │
 │        │                                            │
 │                                                     │
 ╰─────────────────────────────────────────────────────╯
