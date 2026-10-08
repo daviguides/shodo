@@ -14,6 +14,7 @@ An argument may have been passed (e.g. `/shodo:load rust`):
 | `python` | Python only |
 | `rust` | Rust only |
 | `java` | Java only |
+| `typescript` | TypeScript only |
 | `all` | All supported languages |
 | (none) | DETECT — procedure below |
 
@@ -35,7 +36,7 @@ An argument may have been passed (e.g. `/shodo:load rust`):
    | `pyproject.toml` | python |
    | `Cargo.toml` | rust |
    | `pom.xml` / `build.gradle` / `build.gradle.kts` | java |
-   | `tsconfig.json` | typescript (no specs yet — mention and skip) |
+   | `tsconfig.json` | typescript |
 
 3. Load the **UNION** of all detected languages (monorepos load
    multiple languages).
@@ -92,6 +93,23 @@ Read: ~/.claude/shodo/context/examples/java-templates.md
 Read: ~/.claude/shodo/context/examples/java-anti-patterns.md
 ```
 
+## TypeScript Files (7)
+
+### Step 1: Read TypeScript Specs
+```
+Read: ~/.claude/shodo/spec/typescript/typescript-language-spec.md
+Read: ~/.claude/shodo/spec/typescript/typescript-style-spec.md
+Read: ~/.claude/shodo/spec/typescript/typescript-libraries-spec.md
+Read: ~/.claude/shodo/spec/typescript/typescript-testing-tools-spec.md
+```
+
+### Step 2: Read TypeScript Examples
+```
+Read: ~/.claude/shodo/context/examples/typescript-patterns.md
+Read: ~/.claude/shodo/context/examples/typescript-templates.md
+Read: ~/.claude/shodo/context/examples/typescript-anti-patterns.md
+```
+
 ---
 
 ## HALT CONDITIONS
@@ -123,6 +141,13 @@ language: YOU VIOLATED THIS PRINCIPLE.**
 3. **Style** - Spotless (palantir-java-format) + Error Prone
 4. **Language** - Java 25 LTS, virtual threads for I/O
 5. **Testing** - JUnit 6 + AssertJ + Testcontainers + ArchUnit
+
+**TypeScript** standards active (frontend):
+1. **Types** - strict, unknown at boundaries, no any/enum, unions over flags
+2. **Boundary** - parse with a Standard Schema validator, derive types
+3. **Toolchain** - existing project's tools are law; new = fastest native
+4. **Language** - TypeScript 7, erasable syntax, ESM only
+5. **Testing** - Vitest 4 + Testing Library + MSW + Playwright
 
 ## Confirmation
 
@@ -163,6 +188,14 @@ actual languages and counts (e.g. `python (7) + rust (7) = 14 files`):
 │ • Spotless (palantir) + Error Prone                 │
 │ • Java 25 LTS, virtual threads for I/O              │
 │ • JUnit 6 + AssertJ + Testcontainers + ArchUnit     │
+└─────────────────────────────────────────────────────┘
+
+┌─ TypeScript Standards ──────────────────────────────┐
+│ • strict, unknown at boundaries, no any/enum        │
+│ • Standard Schema parse at the boundary             │
+│ • Existing toolchain is law; new = fastest native   │
+│ • TypeScript 7, erasable syntax, ESM only           │
+│ • Vitest 4 + Testing Library + MSW + Playwright     │
 └─────────────────────────────────────────────────────┘
 
 ┌─ Files ─────────────────────────────────────────────┐

@@ -4,7 +4,7 @@
 
 **Shodō** (書道) is the Way of Calligraphy - the art of beautiful, precise writing.
 
-**Philosophy**: Like Japanese calligraphy masters who practice brush strokes for elegance and precision, Shodō guides developers to write code with clarity — language-specific standards for Python, Rust, and Java (style, types, errors, libraries, CLI architecture).
+**Philosophy**: Like Japanese calligraphy masters who practice brush strokes for elegance and precision, Shodō guides developers to write code with clarity — language-specific standards for Python, Rust, Java, and TypeScript (style, types, errors, libraries, CLI architecture).
 
 ```
        ●
@@ -33,12 +33,18 @@ shodo/
 │   │   │   ├── rust-libraries-spec.md
 │   │   │   ├── rust-testing-tools-spec.md
 │   │   │   └── rust-cli-architecture-spec.md
-│   │   └── java/             # Java standards
-│   │       ├── java-language-spec.md
-│   │       ├── java-style-spec.md
-│   │       ├── java-libraries-spec.md
-│   │       ├── java-testing-tools-spec.md
-│   │       └── java-cli-architecture-spec.md
+│   │   ├── java/             # Java standards
+│   │   │   ├── java-language-spec.md
+│   │   │   ├── java-style-spec.md
+│   │   │   ├── java-libraries-spec.md
+│   │   │   ├── java-testing-tools-spec.md
+│   │   │   └── java-cli-architecture-spec.md
+│   │   └── typescript/       # TypeScript standards (frontend)
+│   │       ├── typescript-language-spec.md
+│   │       ├── typescript-style-spec.md
+│   │       ├── typescript-libraries-spec.md
+│   │       ├── typescript-testing-tools-spec.md
+│   │       └── typescript-cli-architecture-spec.md
 │   ├── context/
 │   │   └── examples/
 │   │       ├── python-patterns.md
@@ -49,7 +55,10 @@ shodo/
 │   │       ├── rust-anti-patterns.md
 │   │       ├── java-patterns.md
 │   │       ├── java-templates.md
-│   │       └── java-anti-patterns.md
+│   │       ├── java-anti-patterns.md
+│   │       ├── typescript-patterns.md
+│   │       ├── typescript-templates.md
+│   │       └── typescript-anti-patterns.md
 │   └── prompts/
 │       ├── load.md           # Language resolution + standards loading
 │       └── load-cli.md       # CLI architecture loading
@@ -63,21 +72,30 @@ shodo/
 
 | Command | Purpose |
 |---------|---------|
-| `/shodo:load [python\|rust\|java\|all]` | Load language standards (detects project languages if omitted) |
-| `/shodo:load-cli [python\|rust\|java\|all]` | Load CLI architecture standards (same resolution) |
+| `/shodo:load [python\|rust\|java\|typescript\|all]` | Load language standards (detects project languages if omitted) |
+| `/shodo:load-cli [python\|rust\|java\|typescript\|all]` | Load CLI architecture standards (same resolution) |
 
 **Language resolution**: explicit argument wins; without argument,
 detect markers (`pyproject.toml` → python, `Cargo.toml` → rust,
-`pom.xml`/`build.gradle`/`build.gradle.kts` → java) in cwd,
+`pom.xml`/`build.gradle`/`build.gradle.kts` → java,
+`tsconfig.json` → typescript) in cwd,
 ancestors, and shallow subdirectories, loading the UNION
 (monorepos load multiple). Nothing detected → python fallback.
+
+**TypeScript** is framed as a frontend language. Unlike python/rust/
+java, its toolchain guidance is flexible: an existing project's
+package manager, bundler, linter, formatter, and test runner are law;
+new projects get the fastest option (native tooling). The "fastest per
+category" table in typescript-style-spec is a dated snapshot —
+re-verify it when touching the spec.
 
 
 ## Related Plugins
 
 - **Zazen**: Core zen principles (naming, structure) — universal,
   always loaded alongside Shodō; language specs NEVER repeat zazen
-- **Kinhin**: TDD practices
+- **Kinhin**: TDD practices — owns TypeScript TDD methodology; shodo's
+  typescript-testing-tools-spec references it, never repeats it
 - **Arche**: Behavioral principles for Claude Code
 - **Gradient**: Plugin architecture
 
@@ -86,7 +104,7 @@ ancestors, and shallow subdirectories, loading the UNION
 
 Extracted from Zazen to separate concerns:
 - **Zazen**: Zen principles + naming + structure
-- **Shodō**: Language standards (style, types, errors, libraries) — Python, Rust & Java
+- **Shodō**: Language standards (style, types, errors, libraries) — Python, Rust, Java & TypeScript
 - **Kinhin**: TDD practices
 
 ---

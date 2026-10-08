@@ -1,5 +1,5 @@
 ---
-description: Load language standards for elegant code (python|rust|java|all; detects project languages if omitted)
+description: Load language standards for elegant code (python|rust|java|typescript|all; detects project languages if omitted)
 user-invocable: true
 ---
 

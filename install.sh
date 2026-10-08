@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ============================================================================
 # Shodō Installer
-# Installs Shodō code standards (Python, Rust & Java) to ~/.claude/shodo
+# Installs Shodō code standards (Python, Rust, Java & TypeScript) to ~/.claude/shodo
 # ============================================================================
 
 # --- Colors (Rich-inspired palette) ---

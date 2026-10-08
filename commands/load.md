@@ -1,6 +1,6 @@
 ---
-description: Load language standards for elegant code (python|rust|java|all; detects project languages if omitted)
-argument-hint: "[python|rust|java|all]"
+description: Load language standards for elegant code (python|rust|java|typescript|all; detects project languages if omitted)
+argument-hint: "[python|rust|java|typescript|all]"
 ---
 
 # MANDATORY ACTION
