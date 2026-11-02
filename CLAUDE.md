@@ -26,25 +26,30 @@ shodo/
 │   │   │   ├── python-style-spec.md
 │   │   │   ├── python-libraries-spec.md
 │   │   │   ├── python-testing-tools-spec.md
-│   │   │   └── python-cli-architecture-spec.md
+│   │   │   ├── python-cli-architecture-spec.md
+│   │   │   └── python-make-spec.md
 │   │   ├── rust/             # Rust standards
 │   │   │   ├── rust-language-spec.md
 │   │   │   ├── rust-style-spec.md
 │   │   │   ├── rust-libraries-spec.md
 │   │   │   ├── rust-testing-tools-spec.md
-│   │   │   └── rust-cli-architecture-spec.md
+│   │   │   ├── rust-cli-architecture-spec.md
+│   │   │   └── rust-make-spec.md
 │   │   ├── java/             # Java standards
 │   │   │   ├── java-language-spec.md
 │   │   │   ├── java-style-spec.md
 │   │   │   ├── java-libraries-spec.md
 │   │   │   ├── java-testing-tools-spec.md
-│   │   │   └── java-cli-architecture-spec.md
+│   │   │   ├── java-cli-architecture-spec.md
+│   │   │   └── java-make-spec.md
+│   │   ├── make-contract-spec.md  # Component Makefile contract (all languages)
 │   │   └── typescript/       # TypeScript standards (frontend)
 │   │       ├── typescript-language-spec.md
 │   │       ├── typescript-style-spec.md
 │   │       ├── typescript-libraries-spec.md
 │   │       ├── typescript-testing-tools-spec.md
-│   │       └── typescript-cli-architecture-spec.md
+│   │       ├── typescript-cli-architecture-spec.md
+│   │       └── typescript-make-spec.md
 │   ├── context/
 │   │   └── examples/
 │   │       ├── python-patterns.md
@@ -104,16 +109,18 @@ and `load-cli.md` keep their interactive behavior.
 
 `<lang>` ∈ python, rust, java, typescript.
 
-| File | load-planning-<lang> | load-cli-<lang> | load-<lang> | load-review-<lang> |
-|------|:---:|:---:|:---:|:---:|
-| spec/<lang>/<lang>-language-spec.md |  |  | ✓ |  |
-| spec/<lang>/<lang>-style-spec.md |  |  | ✓ | ✓ |
-| spec/<lang>/<lang>-libraries-spec.md | ✓ |  | ✓ |  |
-| spec/<lang>/<lang>-testing-tools-spec.md |  |  | ✓ |  |
-| spec/<lang>/<lang>-cli-architecture-spec.md |  | ✓ |  |  |
-| context/examples/<lang>-patterns.md |  |  | ✓ |  |
-| context/examples/<lang>-templates.md |  |  | ✓ |  |
-| context/examples/<lang>-anti-patterns.md |  |  | ✓ | ✓ |
+| File | load-planning-<lang> | load-cli-<lang> | load-<lang> | load-review-<lang> | load-make-<lang> |
+|------|:---:|:---:|:---:|:---:|:---:|
+| spec/<lang>/<lang>-language-spec.md |  |  | ✓ |  |  |
+| spec/<lang>/<lang>-style-spec.md |  |  | ✓ | ✓ |  |
+| spec/<lang>/<lang>-libraries-spec.md | ✓ |  | ✓ |  |  |
+| spec/<lang>/<lang>-testing-tools-spec.md |  |  | ✓ |  |  |
+| spec/<lang>/<lang>-cli-architecture-spec.md |  | ✓ |  |  |  |
+| context/examples/<lang>-patterns.md |  |  | ✓ |  |  |
+| context/examples/<lang>-templates.md |  |  | ✓ |  |  |
+| context/examples/<lang>-anti-patterns.md |  |  | ✓ | ✓ |  |
+| spec/make-contract-spec.md |  |  |  |  | ✓ |
+| spec/<lang>/<lang>-make-spec.md |  |  |  |  | ✓ |
 
 Rationale: planning chooses libraries; implementing needs the full
 idiom; review judges style and known anti-patterns. `load-cli-<lang>`
@@ -121,6 +128,12 @@ is conditional: the runner loads it only when faro detects the `cli`
 aspect, in PLANNING, PLAN_REVIEWING and VALIDATING (not IMPLEMENTING:
 the implementer follows the layers fixed in the plan). Not every task
 touches a CLI, so the spec stays out of `load-planning-<lang>`.
+`load-make-<lang>` carries the component Makefile contract (`test`
+and `check` in the component's own `Makefile`, never the repo root):
+the runner runs `make -C <component> test check` between
+IMPLEMENTING and VALIDATING, and a task whose component lacks the
+targets adds them. Loaded in PLANNING, PLAN_REVIEWING and
+IMPLEMENTING.
 
 Compiled size (chars, ~tokens at chars/3.6):
 
