@@ -151,10 +151,14 @@ Compiled size (chars, ~tokens at chars/3.6):
 | `load-planning-typescript` | 10,196 | ~2.8k |
 | `load-typescript` | 39,044 | ~10.8k |
 | `load-review-typescript` | 11,052 | ~3.0k |
+| `load-make-python` | 3,585 | ~1.0k |
+| `load-make-rust` | 3,335 | ~0.9k |
+| `load-make-java` | 3,499 | ~1.0k |
+| `load-make-typescript` | 3,568 | ~1.0k |
 | `load` (interactive, all 4 languages) | 164,463 | ~45.7k |
 
 Measured with `compile_plugin("shodo", prompt=<entry>, strict=True)`
-on v1.4.1.
+on v1.4.1 (`load-make-<lang>` on v1.6.0).
 
 Keep the entries in sync when a spec file is added to a language.
 

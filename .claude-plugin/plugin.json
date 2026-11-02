@@ -1,6 +1,6 @@
 {
     "name": "shodo",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "description": "Shodō (書道) - The Way of Code Calligraphy (Python, Rust, Java & TypeScript)",
     "author": {
         "name": "Davi Guides",
