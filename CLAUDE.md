@@ -122,7 +122,24 @@ planning entry already carries the CLI architecture spec.
 
 Compiled size (chars, ~tokens at chars/3.6):
 
-<!-- SIZES -->
+| Entry | chars | ~tokens |
+|-------|------:|------:|
+| `load-planning-python` | 8,947 | ~2.4k |
+| `load-python` | 49,507 | ~13.7k |
+| `load-review-python` | 11,581 | ~3.2k |
+| `load-planning-rust` | 9,780 | ~2.7k |
+| `load-rust` | 32,399 | ~8.9k |
+| `load-review-rust` | 9,876 | ~2.7k |
+| `load-planning-java` | 11,483 | ~3.1k |
+| `load-java` | 38,849 | ~10.7k |
+| `load-review-java` | 11,466 | ~3.1k |
+| `load-planning-typescript` | 10,196 | ~2.8k |
+| `load-typescript` | 39,044 | ~10.8k |
+| `load-review-typescript` | 11,052 | ~3.0k |
+| `load` (interactive, all 4 languages) | 164,463 | ~45.7k |
+
+Measured with `compile_plugin("shodo", prompt=<entry>, strict=True)`
+on v1.4.1.
 
 Keep the entries in sync when a spec file is added to a language.
 
