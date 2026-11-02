@@ -104,21 +104,23 @@ and `load-cli.md` keep their interactive behavior.
 
 `<lang>` ∈ python, rust, java, typescript.
 
-| File | load-planning-<lang> | load-<lang> | load-review-<lang> |
-|------|:---:|:---:|:---:|
-| spec/<lang>/<lang>-language-spec.md | | ✓ | |
-| spec/<lang>/<lang>-style-spec.md | | ✓ | ✓ |
-| spec/<lang>/<lang>-libraries-spec.md | ✓ | ✓ | |
-| spec/<lang>/<lang>-testing-tools-spec.md | | ✓ | |
-| spec/<lang>/<lang>-cli-architecture-spec.md | ✓ | | |
-| context/examples/<lang>-patterns.md | | ✓ | |
-| context/examples/<lang>-templates.md | | ✓ | |
-| context/examples/<lang>-anti-patterns.md | | ✓ | ✓ |
+| File | load-planning-<lang> | load-cli-<lang> | load-<lang> | load-review-<lang> |
+|------|:---:|:---:|:---:|:---:|
+| spec/<lang>/<lang>-language-spec.md |  |  | ✓ |  |
+| spec/<lang>/<lang>-style-spec.md |  |  | ✓ | ✓ |
+| spec/<lang>/<lang>-libraries-spec.md | ✓ |  | ✓ |  |
+| spec/<lang>/<lang>-testing-tools-spec.md |  |  | ✓ |  |
+| spec/<lang>/<lang>-cli-architecture-spec.md |  | ✓ |  |  |
+| context/examples/<lang>-patterns.md |  |  | ✓ |  |
+| context/examples/<lang>-templates.md |  |  | ✓ |  |
+| context/examples/<lang>-anti-patterns.md |  |  | ✓ | ✓ |
 
-Rationale: planning chooses libraries and layers (libraries,
-cli-architecture); implementing needs the full idiom; review judges
-style and known anti-patterns. No separate `load-cli-<lang>`: the
-planning entry already carries the CLI architecture spec.
+Rationale: planning chooses libraries; implementing needs the full
+idiom; review judges style and known anti-patterns. `load-cli-<lang>`
+is conditional: the runner loads it only when faro detects the `cli`
+aspect, in PLANNING, PLAN_REVIEWING and VALIDATING (not IMPLEMENTING:
+the implementer follows the layers fixed in the plan). Not every task
+touches a CLI, so the spec stays out of `load-planning-<lang>`.
 
 Compiled size (chars, ~tokens at chars/3.6):
 
