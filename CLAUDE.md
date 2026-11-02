@@ -60,8 +60,11 @@ shodo/
 │   │       ├── typescript-templates.md
 │   │       └── typescript-anti-patterns.md
 │   └── prompts/
-│       ├── load.md           # Language resolution + standards loading
-│       └── load-cli.md       # CLI architecture loading
+│       ├── load.md           # Language resolution + standards loading (interactive)
+│       ├── load-cli.md       # CLI architecture loading (interactive)
+│       ├── load-planning-<lang>.md  # Runner entry: PLANNING / plan review
+│       ├── load-<lang>.md           # Runner entry: IMPLEMENTING
+│       └── load-review-<lang>.md    # Runner entry: VALIDATING
 ├── commands/
 ├── skills/
 └── docs/
@@ -88,6 +91,40 @@ package manager, bundler, linter, formatter, and test runner are law;
 new projects get the fastest option (native tooling). The "fastest per
 category" table in typescript-style-spec is a dated snapshot —
 re-verify it when touching the spec.
+
+
+## Runner entries (per mode × language)
+
+The runner compiles gradients into the system prompt, so the
+interactive `load.md` (language detection in prose, every `Read:`
+inlined) would ship all four languages. These thin entries list only
+the files one mode needs for one language. No confirmation card: they
+are compiled into a system prompt, not run as a command. `load.md`
+and `load-cli.md` keep their interactive behavior.
+
+`<lang>` ∈ python, rust, java, typescript.
+
+| File | load-planning-<lang> | load-<lang> | load-review-<lang> |
+|------|:---:|:---:|:---:|
+| spec/<lang>/<lang>-language-spec.md | | ✓ | |
+| spec/<lang>/<lang>-style-spec.md | | ✓ | ✓ |
+| spec/<lang>/<lang>-libraries-spec.md | ✓ | ✓ | |
+| spec/<lang>/<lang>-testing-tools-spec.md | | ✓ | |
+| spec/<lang>/<lang>-cli-architecture-spec.md | ✓ | | |
+| context/examples/<lang>-patterns.md | | ✓ | |
+| context/examples/<lang>-templates.md | | ✓ | |
+| context/examples/<lang>-anti-patterns.md | | ✓ | ✓ |
+
+Rationale: planning chooses libraries and layers (libraries,
+cli-architecture); implementing needs the full idiom; review judges
+style and known anti-patterns. No separate `load-cli-<lang>`: the
+planning entry already carries the CLI architecture spec.
+
+Compiled size (chars, ~tokens at chars/3.6):
+
+<!-- SIZES -->
+
+Keep the entries in sync when a spec file is added to a language.
 
 
 ## Related Plugins
