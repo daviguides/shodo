@@ -139,26 +139,31 @@ Compiled size (chars, ~tokens at chars/3.6):
 
 | Entry | chars | ~tokens |
 |-------|------:|------:|
-| `load-planning-python` | 8,947 | ~2.4k |
-| `load-python` | 49,507 | ~13.7k |
-| `load-review-python` | 11,581 | ~3.2k |
-| `load-planning-rust` | 9,780 | ~2.7k |
-| `load-rust` | 32,399 | ~8.9k |
+| `load-planning-python` | 2,478 | ~0.7k |
+| `load-cli-python` | 6,779 | ~1.9k |
+| `load-python` | 42,424 | ~11.8k |
+| `load-review-python` | 11,520 | ~3.2k |
+| `load-make-python` | 3,636 | ~1.0k |
+| `load-planning-rust` | 3,302 | ~0.9k |
+| `load-cli-rust` | 6,782 | ~1.9k |
+| `load-rust` | 32,111 | ~8.9k |
 | `load-review-rust` | 9,876 | ~2.7k |
-| `load-planning-java` | 11,483 | ~3.1k |
-| `load-java` | 38,849 | ~10.7k |
-| `load-review-java` | 11,466 | ~3.1k |
-| `load-planning-typescript` | 10,196 | ~2.8k |
-| `load-typescript` | 39,044 | ~10.8k |
-| `load-review-typescript` | 11,052 | ~3.0k |
-| `load-make-python` | 3,585 | ~1.0k |
-| `load-make-rust` | 3,335 | ~0.9k |
+| `load-make-rust` | 3,766 | ~1.0k |
+| `load-planning-java` | 4,395 | ~1.2k |
+| `load-cli-java` | 7,392 | ~2.1k |
+| `load-java` | 38,565 | ~10.7k |
+| `load-review-java` | 11,466 | ~3.2k |
 | `load-make-java` | 3,499 | ~1.0k |
+| `load-planning-typescript` | 5,731 | ~1.6k |
+| `load-cli-typescript` | 4,787 | ~1.3k |
+| `load-typescript` | 38,662 | ~10.7k |
+| `load-review-typescript` | 11,052 | ~3.1k |
 | `load-make-typescript` | 3,568 | ~1.0k |
-| `load` (interactive, all 4 languages) | 164,463 | ~45.7k |
+| `load` (interactive, all 4 languages) | 156,426 | ~43.5k |
 
 Measured with `compile_plugin("shodo", prompt=<entry>, strict=True)`
-on v1.4.1 (`load-make-<lang>` on v1.6.0).
+on the source bundle copied under a scratch HOME (release 1 trim for
+the runner: testing-tools no longer repeats kinhin runner config).
 
 Keep the entries in sync when a spec file is added to a language.
 
