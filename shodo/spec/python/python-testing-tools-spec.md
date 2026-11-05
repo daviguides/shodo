@@ -249,6 +249,8 @@ test = [
 ]
 ```
 
+Runner plugins (pytest-xdist, pytest-randomly, pytest-json-report, pytest-testmon): kinhin python-tdd-spec.
+
 ## Mocking and Patching
 
 ### unittest.mock

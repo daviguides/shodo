@@ -6,15 +6,15 @@ resolving new versions.
 
 | Target | Commands |
 |--------|----------|
-| `test` | `cargo nextest run --locked --no-fail-fast`; `cargo test --doc --locked` (library crates) |
+| `test` | `cargo nextest run --locked --no-fail-fast --no-tests=warn`; `cargo test --doc --locked` when `src/lib.rs` exists |
 | `check` | `cargo fmt --check`; `cargo clippy --locked --all-targets -- -D warnings` |
 
 ```make
 .PHONY: install test check format
 
 test:
-	cargo nextest run --locked --no-fail-fast
-	cargo test --doc --locked
+	cargo nextest run --locked --no-fail-fast --no-tests=warn
+	@if [ -f src/lib.rs ]; then cargo test --doc --locked; fi
 
 check:
 	cargo fmt --check
@@ -24,12 +24,10 @@ format:
 	cargo fmt
 ```
 
-nextest is the runner (kinhin rust-tdd-spec): install it with
-`cargo install cargo-nextest --locked`. It does not run doctests, so the
-recipe adds `cargo test --doc`; drop that line in a binary-only crate
-(no library target, `--doc` fails). A crate with no tests yet needs
-`--no-tests=pass` on the nextest line.
+nextest is the runner (kinhin rust-tdd-spec); install with
+`cargo install cargo-nextest --locked`; it does not run doctests, hence
+the doc line (library crates only).
 
 In a Cargo workspace member, run from the member directory; cargo
 resolves the workspace lock itself. Add `--all-features` to every
-commands when the crate gates code behind features that CI must cover.
+command when the crate gates code behind features that CI must cover.

@@ -82,9 +82,8 @@ it('submits the order', async () => {
 ## Coverage
 - **`@vitest/coverage-v8`** — native V8 coverage, no instrumentation
   pass
-
-- Presentational components: covered by behavior tests, not by line
-  count
+- Coverage scope: presentational components are covered by behavior
+  tests, not by line count
 
 ## Configuration Pattern
 
