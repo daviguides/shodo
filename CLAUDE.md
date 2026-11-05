@@ -141,14 +141,14 @@ Compiled size (chars, ~tokens at chars/3.6):
 |-------|------:|------:|
 | `load-planning-python` | 2,478 | ~0.7k |
 | `load-cli-python` | 6,779 | ~1.9k |
-| `load-python` | 42,424 | ~11.8k |
+| `load-python` | 42,533 | ~11.8k |
 | `load-review-python` | 11,520 | ~3.2k |
 | `load-make-python` | 3,650 | ~1.0k |
 | `load-planning-rust` | 3,302 | ~0.9k |
 | `load-cli-rust` | 6,782 | ~1.9k |
 | `load-rust` | 32,111 | ~8.9k |
 | `load-review-rust` | 9,876 | ~2.7k |
-| `load-make-rust` | 3,766 | ~1.0k |
+| `load-make-rust` | 3,692 | ~1.0k |
 | `load-planning-java` | 4,395 | ~1.2k |
 | `load-cli-java` | 7,392 | ~2.1k |
 | `load-java` | 38,565 | ~10.7k |
@@ -156,10 +156,10 @@ Compiled size (chars, ~tokens at chars/3.6):
 | `load-make-java` | 3,499 | ~1.0k |
 | `load-planning-typescript` | 5,731 | ~1.6k |
 | `load-cli-typescript` | 4,787 | ~1.3k |
-| `load-typescript` | 38,662 | ~10.7k |
+| `load-typescript` | 38,680 | ~10.7k |
 | `load-review-typescript` | 11,052 | ~3.1k |
 | `load-make-typescript` | 3,568 | ~1.0k |
-| `load` (interactive, all 4 languages) | 156,426 | ~43.5k |
+| `load` (interactive, all 4 languages) | 156,553 | ~43.5k |
 
 Measured with `compile_plugin("shodo", prompt=<entry>, strict=True)`
 on the source bundle copied under a scratch HOME (release 1 trim for
