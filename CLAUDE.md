@@ -143,7 +143,7 @@ Compiled size (chars, ~tokens at chars/3.6):
 | `load-cli-python` | 6,779 | ~1.9k |
 | `load-python` | 42,424 | ~11.8k |
 | `load-review-python` | 11,520 | ~3.2k |
-| `load-make-python` | 3,636 | ~1.0k |
+| `load-make-python` | 3,650 | ~1.0k |
 | `load-planning-rust` | 3,302 | ~0.9k |
 | `load-cli-rust` | 6,782 | ~1.9k |
 | `load-rust` | 32,111 | ~8.9k |
