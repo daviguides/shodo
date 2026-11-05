@@ -28,7 +28,7 @@ format:
 ```
 
 `<package>` is the import package of the component (the directory
-under the component root or `src/`). Coverage flags (`--cov`,
-`--cov-branch`) live in `pyproject.toml` `addopts`, not in the recipe;
-no `--cov-fail-under` gate (kinhin: coverage after prune is a smoke
-alarm, not a gate).
+under the component root or `src/`). Coverage is measured
+at GREEN with the command in python-testing-tools-spec; neither the
+recipe nor `addopts` carries `--cov-fail-under` (kinhin: coverage after
+prune is a smoke alarm, not a gate).
