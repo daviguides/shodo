@@ -32,7 +32,7 @@ mod tests {
 
 ### cargo-nextest Preferred
 - **`cargo nextest run`** — parallel, isolated processes, better output
-- `cargo test` remains the fallback (doctests still need it)
+- Doctests: `cargo test --doc` (nextest does not run them)
 
 ## Fixtures and Parametrization — rstest
 
@@ -130,12 +130,8 @@ criterion_main!(benches);
 
 ### cargo-llvm-cov
 ```bash
-cargo llvm-cov nextest --fail-under-lines 90
+cargo llvm-cov nextest
 ```
-
-**Targets** (same bar as the Python spec):
-- Overall: ≥ 90%
-- Business logic (services): 100%
 
 ## Dev-Dependencies Pattern
 
@@ -146,16 +142,6 @@ proptest = "1"
 insta = { version = "1", features = ["yaml"] }
 mockall = "0.13"
 criterion = "0.5"
-```
-
-## CI Commands
-
-```bash
-cargo fmt --check
-cargo clippy --all-targets -- -D warnings
-cargo nextest run
-cargo test --doc
-cargo llvm-cov nextest --fail-under-lines 90
 ```
 
 ## Best Practices
