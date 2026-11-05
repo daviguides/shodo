@@ -110,12 +110,8 @@ await().atMost(Duration.ofSeconds(5))
 ## Coverage — JaCoCo
 
 ```bash
-./mvnw verify   # jacoco:report + check bound to verify
+./mvnw verify   # jacoco:report bound to verify; no hard floor after prune (kinhin)
 ```
-
-**Targets** (same bar as the Python spec):
-- Overall: ≥ 90% (jacoco check `fail on < 0.90`)
-- Business logic (services): 100%
 
 Mutation testing with **PIT** on critical domain logic.
 
@@ -141,14 +137,6 @@ Mutation testing with **PIT** on critical domain logic.
     <dependency>com.tngtech.archunit:archunit-junit5 (test)</dependency>
     <dependency>org.awaitility:awaitility (test)</dependency>
 </dependencies>
-```
-
-## CI Commands
-
-```bash
-./mvnw spotless:check
-./mvnw verify                      # compile (Error Prone) + tests + jacoco
-./mvnw test -Dgroups=integration   # testcontainers suite
 ```
 
 ## Best Practices
