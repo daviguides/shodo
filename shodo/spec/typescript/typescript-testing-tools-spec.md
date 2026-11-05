@@ -83,9 +83,6 @@ it('submits the order', async () => {
 - **`@vitest/coverage-v8`** — native V8 coverage, no instrumentation
   pass
 
-**Targets** (same bar as the Python spec):
-- Overall: ≥ 90%
-- Business logic (pure functions, hooks with logic): 100%
 - Presentational components: covered by behavior tests, not by line
   count
 
@@ -99,23 +96,13 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     setupFiles: ['./src/test/setup.ts'],
-    coverage: { provider: 'v8', thresholds: { lines: 90 } },
+    coverage: { provider: 'v8' },
   },
 });
 ```
 
 Runner flags (bail, shuffle, reporters, pool) follow kinhin's runner
 configuration — not repeated here.
-
-## CI Commands
-
-```bash
-<fmt> --check            # oxfmt / biome / prettier — whatever the project uses
-<lint>                   # oxlint --type-aware / eslint
-tsc --noEmit
-vitest run --coverage
-playwright test          # e2e suite
-```
 
 ## Best Practices
 - Arrange / act / assert separated by blank lines
