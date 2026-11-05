@@ -28,6 +28,7 @@ format:
 ```
 
 `<package>` is the import package of the component (the directory
-under the component root or `src/`). Coverage gates
-(`--cov-fail-under`) belong in `pyproject.toml` `addopts`, not in the
-recipe, so `uv run pytest` alone enforces them.
+under the component root or `src/`). Coverage flags (`--cov`,
+`--cov-branch`) live in `pyproject.toml` `addopts`, not in the recipe;
+no `--cov-fail-under` gate (kinhin: coverage after prune is a smoke
+alarm, not a gate).

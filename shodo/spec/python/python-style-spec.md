@@ -216,6 +216,4 @@ def process_payment(
 
 ### Automated Tools
 - Use Ruff for formatting and linting
-- Configure pre-commit hooks
-- Integrate with CI/CD pipeline
 - No manual formatting - always use tools

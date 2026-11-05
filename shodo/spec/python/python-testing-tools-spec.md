@@ -18,55 +18,8 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 ```
 
-### Recommended Options
-```toml
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = [
-    "--strict-markers",      # Fail on unknown markers
-    "--cov=src",            # Coverage for src directory
-    "--cov-branch",         # Branch coverage
-    "--cov-report=term-missing",  # Show missing lines
-    "--cov-fail-under=90",  # Minimum 90% coverage
-    "--tb=short",           # Short traceback format
-    "--maxfail=5",          # Stop after 5 failures
-    "-v",                   # Verbose output
-    "-ra",                  # Show summary of all test outcomes
-]
-```
-
-### Test Markers
-**Requirement**: Define custom markers for test categorization.
-
-**Mandatory Markers:**
-```toml
-markers = [
-    "unit: Unit tests for individual functions",
-    "integration: Integration tests for component interaction",
-    "property: Property-based tests for invariants",
-    "performance: Performance and load tests",
-    "slow: Tests that take significant time to run",
-]
-```
-
-**Optional Markers:**
-```toml
-markers = [
-    "anti_hallucination: Tests to catch LLM errors",
-    "database: Tests requiring database connection",
-    "external: Tests requiring external services",
-    "flaky: Tests known to be intermittently failing",
-]
-```
-
-### Test Discovery
-**Requirement**: Follow pytest test discovery conventions.
-
-**Rules:**
-- Test files: `test_*.py` or `*_test.py`
-- Test classes: `Test*` (no `__init__` method)
-- Test functions: `test_*`
-- Test methods: `test_*` (in Test* classes)
+### Coverage Measurement
+Measure coverage at GREEN: `pytest --cov=<pkg> --cov-branch --cov-report=term-missing` — no `--cov-fail-under` (kinhin owns coverage policy).
 
 ## pytest Fixtures
 
@@ -251,7 +204,6 @@ omit = [
 precision = 2
 show_missing = true
 skip_covered = false
-fail_under = 90.0
 
 exclude_lines = [
     "pragma: no cover",
@@ -264,23 +216,12 @@ exclude_lines = [
 ]
 ```
 
-### Coverage Targets
-**Requirement**: Meet minimum coverage thresholds.
-
-**Targets:**
-- Overall coverage: ≥ 90%
-- Branch coverage: ≥ 90%
-- Business logic: 100%
-- Critical paths: 100%
-
 ### Coverage Reports
 **Requirement**: Generate coverage reports.
 
 **Formats:**
 - Terminal: `--cov-report=term-missing`
 - HTML: `--cov-report=html`
-- XML: `--cov-report=xml` (for CI)
-- JSON: `--cov-report=json` (for tooling)
 
 ## pytest Plugins
 
@@ -293,10 +234,8 @@ exclude_lines = [
 - `pytest-asyncio` - Async test support
 
 **Recommended:**
-- `pytest-xdist` - Parallel test execution
 - `pytest-timeout` - Test timeout enforcement
 - `pytest-benchmark` - Performance benchmarking
-- `pytest-random-order` - Random test ordering
 
 **Installation:**
 ```toml
@@ -306,7 +245,6 @@ test = [
     "pytest-cov>=4.1.0",
     "pytest-mock>=3.12.0",
     "pytest-asyncio>=0.21.0",
-    "pytest-xdist>=3.5.0",
     "hypothesis>=6.90.0",
 ]
 ```
@@ -374,15 +312,6 @@ async def test_async_function():
 
 ## Test Performance
 
-### Parallel Execution
-**Requirement**: Use pytest-xdist for parallel execution.
-
-**Command:**
-```bash
-pytest -n auto  # Use all CPU cores
-pytest -n 4     # Use 4 workers
-```
-
 ### Test Timeouts
 **Requirement**: Set timeouts for long-running tests.
 
@@ -395,46 +324,7 @@ def test_with_timeout():
     assert result == expected_value
 ```
 
-## CI/CD Integration
-
-### GitHub Actions
-**Pattern:**
-```yaml
-- name: Run tests
-  run: |
-    pytest --cov=src --cov-report=xml --cov-report=term-missing
-
-- name: Upload coverage
-  uses: codecov/codecov-action@v3
-  with:
-    files: ./coverage.xml
-```
-
-### Test Selection
-**Requirement**: Support test selection in CI.
-
-**Commands:**
-```bash
-# Run only unit tests
-pytest -m unit
-
-# Run except slow tests
-pytest -m "not slow"
-
-# Run specific test file
-pytest tests/test_specific.py
-
-# Run tests matching pattern
-pytest -k "test_user"
-```
-
 ## Best Practices
-
-### Test Organization
-- One test file per source file
-- Group related tests in classes
-- Use descriptive test names
-- Keep tests focused and simple
 
 ### Test Data
 - Use fixtures for shared data
